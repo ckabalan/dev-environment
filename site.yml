@@ -1,7 +1,21 @@
 ---
 
+
+
 - hosts: 127.0.0.1
   connection: local
   become: yes
+  vars_files:
+    - settings.yml
+  pre_tasks:
+     - name: Create Temporary Directory
+       tempfile:
+         state: directory
+         prefix: ansible_dev_env_
+       register: tempdir
   roles:
      - neovim
+  post_tasks:
+     - name: Print Temporary Directory
+       debug:
+          msg: "Temporary Directory: {{ tempdir.path }}"
