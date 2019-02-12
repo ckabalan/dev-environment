@@ -1,0 +1,13 @@
+---
+
+- name: Load Neovim Variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "os_family/{{ ansible_os_family }}.yml"
+    - default.yml
+
+
+- name: Install Neovim Pre-requisites
+  package:
+    name: "{{ neovim_packages }}"
+    state: present
