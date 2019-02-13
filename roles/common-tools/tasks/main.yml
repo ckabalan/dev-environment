@@ -1,0 +1,24 @@
+---
+- name: Install Git PPA
+  apt_repository:
+    repo: ppa:git-core/ppa
+
+- name: Install Latest Git
+  package:
+    name: git
+    state: latest
+
+- name: Install Python PPA
+  apt_repository:
+    repo: ppa:deadsnakes/ppa
+
+- name: Install Latest Python 3.7
+  package:
+    name: python3.7
+    state: latest
+
+- name: Install Common Tools
+  package:
+    name:
+      - htop
+    state: present
