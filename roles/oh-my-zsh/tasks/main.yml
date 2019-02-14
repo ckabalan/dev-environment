@@ -4,8 +4,8 @@
     name: zsh
     state: present
 
-- name: Clone Neovim Repo
-  git:
-    repo: https://github.com/robbyrussell/oh-my-zsh.git
-    dest: "{{ tempdir.path }}/neovim/git"
-    version: "{{ neovim_release_tag }}"
+#- name: Clone Neovim Repo
+#  git:
+#    repo: https://github.com/robbyrussell/oh-my-zsh.git
+#    dest: "{{ tempdir.path }}/neovim/git"
+#    version: "{{ neovim_release_tag }}"

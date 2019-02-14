@@ -21,6 +21,7 @@
       git:
         repo: https://github.com/neovim/neovim
         dest: "{{ tempdir.path }}/neovim/git"
+        refspec: "{{ neovim_release_tag }}"
         version: "{{ neovim_release_tag }}"
 
     - name: Build Neovim from Source
