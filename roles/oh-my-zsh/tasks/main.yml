@@ -3,9 +3,26 @@
   package:
     name: zsh
     state: present
+  become: yes
 
-#- name: Clone Neovim Repo
-#  git:
-#    repo: https://github.com/robbyrussell/oh-my-zsh.git
-#    dest: "{{ tempdir.path }}/neovim/git"
-#    version: "{{ neovim_release_tag }}"
+- name: Clone Oh-My-ZSH Repo
+  git:
+    repo: https://github.com/robbyrussell/oh-my-zsh.git
+    dest: "~/.oh-my-zsh"
+
+- name: Clone Powerlevel9k Repo
+  git:
+    repo: https://github.com/bhilburn/powerlevel9k.git
+    dest: "~/.oh-my-zsh/custom/themes/powerlevel9k"
+
+- name: Set User's Default Shell
+  user:
+    name: "{{ lookup('env','USER') }}"
+    shell: /bin/zsh
+  become: yes
+
+- name: Install Oh-My-ZSH RC File
+  template:
+    src: "../templates/home/current-user/_zshrc.j2"
+    dest: "~/.zshrc"
+
