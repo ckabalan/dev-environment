@@ -5,24 +5,34 @@
     state: present
   become: yes
 
-- name: Clone Oh-My-ZSH Repo
-  git:
-    repo: https://github.com/robbyrussell/oh-my-zsh.git
-    dest: "~/.oh-my-zsh"
+- name: Check if Oh-My-ZSH is Installed
+  stat:
+    path: ~/.oh-my-zsh/oh-my-zsh.sh
+  register: oh_my_zsh_stat_result
 
-- name: Clone Powerlevel9k Repo
-  git:
-    repo: https://github.com/bhilburn/powerlevel9k.git
-    dest: "~/.oh-my-zsh/custom/themes/powerlevel9k"
+- name: Install Oh-My-ZSH
+  block:
+    - name: Clone Oh-My-ZSH Repo
+      git:
+        repo: https://github.com/robbyrussell/oh-my-zsh.git
+        dest: "~/.oh-my-zsh"
+
+    - name: Clone Powerlevel9k Repo
+      git:
+        repo: https://github.com/bhilburn/powerlevel9k.git
+        dest: "~/.oh-my-zsh/custom/themes/powerlevel9k"
+
+    # At some point need to make a setting to change the font symbols
+    # to work if you don't have the right "Consolas CK" font set up
+    - name: Install Oh-My-ZSH RC File
+      template:
+        src: "../templates/home/current-user/_zshrc.j2"
+        dest: "~/.zshrc"
+  when: (oh_my_zsh_force_reinstall == True) or (oh_my_zsh_stat_result.stat.exists == False)
 
 - name: Set User's Default Shell
   user:
     name: "{{ lookup('env','USER') }}"
     shell: /bin/zsh
   become: yes
-
-- name: Install Oh-My-ZSH RC File
-  template:
-    src: "../templates/home/current-user/_zshrc.j2"
-    dest: "~/.zshrc"
 

@@ -4,4 +4,6 @@ neovim_force_rebuild: False
 # Which Git tag to use when pulling the latest Neovim code?
 # Reference: https://github.com/neovim/neovim/tags
 neovim_release_tag: stable
+# Force Oh-My-ZSH reinstall even if it exists (usually used for upgrading) 
+oh_my_zsh_force_reinstall: False
 

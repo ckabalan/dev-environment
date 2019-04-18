@@ -11,6 +11,7 @@
         prefix: ansible_dev_env_
       register: tempdir
   roles:
+    - git
     - common-tools
     - oh-my-zsh
     - neovim

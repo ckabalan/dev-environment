@@ -1,0 +1,11 @@
+---
+- name: Install Git PPA
+  apt_repository:
+    repo: ppa:git-core/ppa
+  become: yes
+
+- name: Install Latest Git
+  package:
+    name: git
+    state: latest
+  become: yes

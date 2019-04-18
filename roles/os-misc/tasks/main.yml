@@ -1,0 +1,6 @@
+---
+- name: Remove Landscape Management
+  package:
+    name: landscape-common
+    state: absent
+  become: yes

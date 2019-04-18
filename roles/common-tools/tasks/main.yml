@@ -1,15 +1,4 @@
 ---
-- name: Install Git PPA
-  apt_repository:
-    repo: ppa:git-core/ppa
-  become: yes
-
-- name: Install Latest Git
-  package:
-    name: git
-    state: latest
-  become: yes
-
 - name: Install Python PPA
   apt_repository:
     repo: ppa:deadsnakes/ppa
@@ -25,5 +14,31 @@
   package:
     name:
       - htop
+      - python-pip
+      - python3-pip
+      - python3-venv
     state: present
   become: yes
+
+- name: Check if Pip 3.7 is Installed
+  stat:
+    path: ~/.local/bin/pip3.7
+  register: pip37_stat_result
+
+- name: Install Pip 3.7
+  shell: python3.7 -m pip install pip --user --upgrade
+  when: pip37_stat_result.stat.exists == False
+
+- name: Install Python 3.7 Packages
+  pip:
+    name:
+      - awscli
+    executable: ~/.local/bin/pip3.7
+    extra_args: --upgrade --user
+
+- name: Install Python 3.6 Packages
+  pip:
+    name:
+      - aws-sam-cli
+    executable: pip3
+    extra_args: --upgrade --user
