@@ -1,0 +1,17 @@
+---
+- name: Install Samba
+  package:
+    name: samba
+    state: present
+  become: yes
+
+- name: Add Samba Share For Home Directory
+  blockinfile:
+    path: /etc/samba/smb.conf
+    block: |
+      [{{ lookup('env','USER') }}]
+          comment = Home Directory
+          path = /home/{{ lookup('env','USER') }}
+          read only = no
+          browsable = yes
+  become: yes

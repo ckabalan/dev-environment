@@ -36,6 +36,7 @@
     executable: ~/.local/bin/pip3.7
     extra_args: --upgrade --user
 
+# I think this will always show as updating
 - name: Install Python 3.6 Packages
   pip:
     name:

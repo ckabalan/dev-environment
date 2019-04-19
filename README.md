@@ -20,6 +20,13 @@ Run the Playbook:
 ansible-playbook --verbose -K site.yml
 ```
 
+Finish Samba Setup:
+
+```bash
+sudo smbpasswd -a $USER
+sudo systemctl restart smbd
+```
+
 ## Other Tips
 
 ### Discard Local Changes and Sync Repository From Origin
@@ -37,26 +44,3 @@ Ubuntu:
 
 ### Set up Samba
 
-Ubuntu:
-
-```bash
-sudo apt install samba
-sudo vi /etc/samba/smb.conf
-```
-
-Add this content:
-
-```
-[ckabalan]
-    comment = Home Directory
-    path = /home/ckabalan
-    read only = no
-    browsable = yes
-```
-
-Restart and add a password:
-
-```bash
-smbpasswd -a ckabalan
-systemctl restart smbd
-```

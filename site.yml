@@ -15,6 +15,7 @@
     - common-tools
     - oh-my-zsh
     - neovim
+    - samba
   post_tasks:
     - name: Print Temporary Directory
       debug:

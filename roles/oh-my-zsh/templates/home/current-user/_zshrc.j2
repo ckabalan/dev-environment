@@ -127,45 +127,12 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
-# CKabalan Customizations
-#
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
-export no_proxy=".example.com"
-export EDITOR='TERM=xterm-256color nvim'
-export GIT_EDITOR='TERM=xterm-256color nvim'
-export VISUAL='TERM=xterm-256color nvim'
-unset SSH_ASKPASS
-# User specific aliases and functions
-alias tmux="tmux -2"
-alias nvim="TERM=xterm-256color nvim"
-#alias ll="ls -alh"
-alias ll="LC_COLLATE=C.UTF-8 ls -alhF --group-directories-first"
-alias loadkey='eval $(ssh-agent) && ssh-add'
 
-alias history='fc -li 1'
-
-# User specific environment and startup programs
-
-PATH=$PATH:$HOME/.local/bin:$HOME/bin
-AWS_CA_BUNDLE=/etc/ssl/certs/ca-bundle.crt
-
-export PATH
-export AWS_CA_BUNDLE
-
-# Save 100,000,000 lines of history in memory
-HISTSIZE=100000000
-# Save 1,000,000,000 lines of history to disk (will have to grep the history file for full listing)
-HISTFILESIZE=1000000000
-# Ignore redundant or space commands
-HISTCONTROL=ignoreboth
-# Ignore more
-HISTIGNORE='ls:ll:ls -alh:pwd:clear:history'
-SAVEHIST=$HISTSIZE
-
+#### Start CKabalan Customizations
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=( context dir rbenv vcs virtualenv )
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=( status root_indicator background_jobs history time )
-
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
 POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='> '
@@ -186,12 +153,38 @@ POWERLEVEL9K_VCS_CLEAN_BACKGROUND='yellow'
 POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='yellow'
 POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='yellow'
 POWERLEVEL9K_VIRTUALENV_BACKGROUND='yellow'
-
 #POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 #POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_unique
-
 #ZLE_RPROMPT_INDENT=0
 POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%K{blue}%F{black} %f%F{blue}%k\uE0B0%f "
 
 bindkey "\033[1~" beginning-of-line
 bindkey "\033[4~" end-of-line
+
+# Save 100,000,000 lines of history in memory
+HISTSIZE=100000000
+# Save 1,000,000,000 lines of history to disk (will have to grep the history file for full listing)
+HISTFILESIZE=1000000000
+# Ignore redundant or space commands
+HISTCONTROL=ignoreboth
+# Ignore more
+HISTIGNORE='ls:ll:ls -alh:pwd:clear:history'
+SAVEHIST=$HISTSIZE
+
+export no_proxy="{{ no_proxy }}"
+export EDITOR='TERM=xterm-256color nvim'
+export GIT_EDITOR='TERM=xterm-256color nvim'
+export VISUAL='TERM=xterm-256color nvim'
+
+PATH=$PATH:$HOME/.local/bin:$HOME/bin
+export PATH
+AWS_CA_BUNDLE=/etc/ssl/certs/ca-bundle.crt
+export AWS_CA_BUNDLE
+
+unset SSH_ASKPASS
+
+alias tmux="tmux -2"
+alias nvim="TERM=xterm-256color nvim"
+alias ll="LC_COLLATE=C.UTF-8 ls -alhF --group-directories-first"
+alias loadkey='eval $(ssh-agent) && ssh-add'
+alias history='fc -li 1'
